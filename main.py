@@ -6,15 +6,13 @@ from fastapi import Query
 
 app = FastAPI()
 
-# Connect to your PostgreSQL database
+# database connection
 engine = create_engine('postgresql://postgres:*****@localhost/SOC')
 
-# Serve your static home.html
 @app.get("/")
 def read_home():
     return FileResponse("static/home.html")
 
-# API endpoint to return logs from the database
 @app.get("/logs")
 def get_logs(
     is_malicious: Optional[int] = Query(None),
